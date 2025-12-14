@@ -1,4 +1,6 @@
-# 🏦 PureStack Java Engineering Challenge: The Fintech Core
+# 🏦 PureStack Fintech Core: Spring Boot, ACID & Concurrency Protocol.
+
+PureStack.es - Engineering. Validated by Code.
 
 ### Context
 Welcome to the **PureStack Technical Validation Protocol** for Backend Engineering.
