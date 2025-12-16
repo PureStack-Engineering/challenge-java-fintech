@@ -30,7 +30,7 @@ Your seniority is defined by how you handle transactions, concurrency, and archi
 * **Extra Tasks:**
     - [ ] **No Leaky Abstractions:** Do NOT expose your Database Entities (`Account`) in the Controller. Use **DTOs** (Data Transfer Objects) for requests and responses.
     - [ ] **Global Exception Handling:** Implement a `@ControllerAdvice` to handle exceptions (e.g., `InsufficientFundsException`) and return clean JSON error responses (400/404) instead of stack traces.
-    - [ ] **Unit Testing:** Extend the test suite using **Mockito** to verify business logic in isolation from the database.
+    - [ ] **Unit Testing:** Implement Unit Tests using **Mockito** to verify business logic in isolation from the database.
 * **Deliverable:** Production-ready code that is maintainable and testable.
 
 #### 🥇 Level 1: Elite / Architect
@@ -56,9 +56,9 @@ Your seniority is defined by how you handle transactions, concurrency, and archi
 ### 🚀 Execution Instructions
 
 1.  **Fork** this repository.
-2.  Inspect `src/main/resources/data.sql` (it pre-loads 2 test accounts).
+2.  Inspect `src/main/resources/application.properties` to check the DB configuration.
 3.  Implement the logic in `TransferService.java` (and create DTOs/Exceptions as needed).
-4.  Run tests: `mvn test`.
+4.  Run tests: `mvn test` (once implemented).
 5.  Submit via **Pull Request** stating your target Level.
 
 ### 🧪 Evaluation Criteria (PureStack Audit)
@@ -73,20 +73,23 @@ Your seniority is defined by how you handle transactions, concurrency, and archi
 ---
 
 ### 🚨 Project Structure (Standard)
-To ensure our **Automated Auditor** works, please keep the core package structure intact.
-You should create the necessary classes inside these packages.
+To ensure our **Automated Auditor** works, please keep the core configuration files intact.
+You should create the necessary classes inside the packages.
 
 ```text
 /
-├── .github/workflows/   # PureStack Audit System (DO NOT TOUCH)
+├── .github/workflows/    # PureStack Audit System (DO NOT TOUCH)
 ├── src/
-│   ├── main/java/com/purestack/fintech/
-│   │   ├── model/       # JPA Entities (Account)
-│   │   ├── repository/  # Spring Data Repositories
-│   │   ├── service/     # (Implement logic here)
-│   │   ├── controller/  # (Implement endpoints here)
-│   │   ├── dto/         # (Create DTOs here)
-│   │   └── FintechApplication.java
-│   └── test/            # JUnit Tests
-├── pom.xml              # Maven Dependencies
+│   ├── main/
+│   │   ├── java/com/purestack/fintech/
+│   │   │   ├── controller/   # (Implement Endpoints here)
+│   │   │   ├── dto/          # (Create this package for Level 2)
+│   │   │   ├── model/        # JPA Entities (Account)
+│   │   │   ├── repository/   # Spring Data Repositories
+│   │   │   ├── service/      # (Implement Logic here)
+│   │   │   └── FintechApplication.java
+│   │   └── resources/
+│   │       └── application.properties
+├── .gitignore
+├── pom.xml               # Dependencies & Build Config
 └── README.md
