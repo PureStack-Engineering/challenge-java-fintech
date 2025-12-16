@@ -1,25 +1,25 @@
 package com.purestack.fintech.service;
 
+import com.purestack.fintech.repository.AccountRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 
 @Service
 public class TransferService {
 
-    // TODO: Inject AccountRepository here
+    private final AccountRepository repository;
 
-    /**
-     * Transfers money from one account to another.
-     * This operation MUST be atomic.
-     */
-    @Transactional
-    public void transfer(Long sourceId, Long targetId, BigDecimal amount) {
-        // TODO: 1. Fetch source and target accounts
-        // TODO: 2. Validate sufficient funds in source account
-        // TODO: 3. Debit source
-        // TODO: 4. Credit target
-        // TODO: 5. Handle exceptions to trigger rollback
+    public TransferService(AccountRepository repository) {
+        this.repository = repository;
+    }
+
+    public void transfer(Long fromId, Long toId, BigDecimal amount) {
+        // TODO: Candidate must implement ACID transaction logic here
+        // 1. Validate amount > 0
+        // 2. Fetch accounts
+        // 3. Check balance
+        // 4. Update balances
+        // 5. Save
         
         throw new UnsupportedOperationException("Not implemented yet");
     }
