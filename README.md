@@ -1,10 +1,5 @@
 # 🏦 PureStack Fintech Core: Spring Boot, ACID & Concurrency Protocol
 
-![Build Status](https://img.shields.io/badge/Build-Passing-success?style=for-the-badge&logo=github)
-![Java](https://img.shields.io/badge/Java-17%2F21-ED8B00?style=for-the-badge&logo=openjdk)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=spring-boot)
-![Tests](https://img.shields.io/badge/Tests-JUnit_5-25A162?style=for-the-badge&logo=junit5)
-
 **PureStack.es - Engineering Validation Protocol.**
 > *"In Fintech, 99.9% reliability is a failure. We audit for ACID compliance and Concurrency safety."*
 
