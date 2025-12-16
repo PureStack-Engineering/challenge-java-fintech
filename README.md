@@ -19,27 +19,27 @@ Your seniority is defined by how you handle transactions, concurrency, and archi
 * **Focus:** ACID Compliance & Basic Logic.
 * **Requirement:** Implement a functional `transfer` endpoint.
 * **Tasks:**
-    - [ ] **Endpoint:** `POST /transfer` (Input: sourceId, targetId, amount).
-    - [ ] **ACID Logic:** Use `@Transactional`. If the credit to the target fails, the debit from the source **must** rollback automatically.
-    - [ ] **Validation:** Prevent transfers if balance is insufficient or amounts are negative.
+    1. **Endpoint:** `POST /transfer` (Input: sourceId, targetId, amount).
+    2. **ACID Logic:** Use `@Transactional`. If the credit to the target fails, the debit from the source **must** rollback automatically.
+    3. **Validation:** Prevent transfers if balance is insufficient or amounts are negative.
 * **Deliverable:** A working API where money never disappears into the void.
 
 #### 🥈 Level 2: Pro / Senior
 * **Focus:** Clean Architecture, DTOs & Error Handling.
 * **Requirement:** Everything in Level 3 + **Decoupling & Resilience**.
 * **Extra Tasks:**
-    - [ ] **No Leaky Abstractions:** Do NOT expose your Database Entities (`Account`) in the Controller. Use **DTOs** (Data Transfer Objects) for requests and responses.
-    - [ ] **Global Exception Handling:** Implement a `@ControllerAdvice` to handle exceptions (e.g., `InsufficientFundsException`) and return clean JSON error responses (400/404) instead of stack traces.
-    - [ ] **Unit Testing:** Implement Unit Tests using **Mockito** to verify business logic in isolation from the database.
+    1. **No Leaky Abstractions:** Do NOT expose your Database Entities (`Account`) in the Controller. Use **DTOs** (Data Transfer Objects) for requests and responses.
+    2. **Global Exception Handling:** Implement a `@ControllerAdvice` to handle exceptions (e.g., `InsufficientFundsException`) and return clean JSON error responses (400/404) instead of stack traces.
+    3. **Unit Testing:** Implement Unit Tests using **Mockito** to verify business logic in isolation from the database.
 * **Deliverable:** Production-ready code that is maintainable and testable.
 
 #### 🥇 Level 1: Elite / Architect
 * **Focus:** Concurrency, Locking Strategies & Idempotency.
 * **Requirement:** Everything above + **Race Condition Handling**.
 * **Extra Tasks:**
-    - [ ] **Optimistic Locking:** Handle **Race Conditions**. What happens if two requests try to withdraw money from the same account simultaneously? Implement `@Version` (Optimistic Locking) to prevent "Lost Updates".
-    - [ ] **Idempotency:** Implement a mechanism to ensure that if the same API request (same `idempotency-key` header) is sent twice (e.g., due to network retry), the transfer happens only once.
-    - [ ] **Integration Tests:** Write a concurrency test (using `ExecutorService` or similar) that simulates 10 threads transferring money at the same time to prove your locking works.
+    1. **Optimistic Locking:** Handle **Race Conditions**. What happens if two requests try to withdraw money from the same account simultaneously? Implement `@Version` (Optimistic Locking) to prevent "Lost Updates".
+    2. **Idempotency:** Implement a mechanism to ensure that if the same API request (same `idempotency-key` header) is sent twice (e.g., due to network retry), the transfer happens only once.
+    3. **Integration Tests:** Write a concurrency test (using `ExecutorService` or similar) that simulates 10 threads transferring money at the same time to prove your locking works.
 * **Deliverable:** A bulletproof financial system robust against high-load scenarios.
 
 ---
