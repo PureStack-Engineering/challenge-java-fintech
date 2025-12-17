@@ -58,8 +58,24 @@ Your seniority is defined by how you handle transactions, concurrency, and archi
 1.  **Fork** this repository.
 2.  Inspect `src/main/resources/application.properties` to check the DB configuration.
 3.  Implement the logic in `TransferService.java` (and create DTOs/Exceptions as needed).
-4.  Run tests: `mvn test` (once implemented).
+4.  Run tests: `mvn test`.
 5.  Submit via **Pull Request** stating your target Level.
+
+> **Note:** You will see a ❌ (**Red Cross**) initially. This is expected (TDD). Your goal is to write the code that turns it ✅ (**Green**).
+
+---
+
+### 📝 Audit & Validation Rules (Strict)
+
+> **⚠️ The "Clean Logs" Policy**
+>
+> Our automated auditor (`audit.yml`) enforces strict production standards. Your PR will be automatically rejected if:
+>
+> 1.  **Dirty Logging:** Usage of `System.out.println` is forbidden. You must use the `Logger` (SLF4J).
+> 2.  **Exception Handling:** Usage of `e.printStackTrace()` is forbidden.
+> 3.  **Test Failures:** The build must pass `mvn test`.
+
+---
 
 ### 🧪 Evaluation Criteria (PureStack Audit)
 
@@ -74,7 +90,6 @@ Your seniority is defined by how you handle transactions, concurrency, and archi
 
 ### 🚨 Project Structure (Standard)
 To ensure our **Automated Auditor** works, please keep the core configuration files intact.
-You should create the necessary classes inside the packages.
 
 ```text
 /
@@ -90,6 +105,9 @@ You should create the necessary classes inside the packages.
 │   │   │   └── FintechApplication.java
 │   │   └── resources/
 │   │       └── application.properties
+│   └── test/                 # (Tests are mandatory)
+│       └── java/com/purestack/fintech/
+│           └── TransferIntegrationTest.java
 ├── .gitignore
 ├── pom.xml               # Dependencies & Build Config
 └── README.md
