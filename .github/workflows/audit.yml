@@ -1,17 +1,55 @@
 name: PureStack Fintech Audit
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  build:
+  fintech-quality-gate:
     runs-on: ubuntu-latest
+    name: 🏦 Fintech Quality Gate
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Run Tests
-      run: mvn test
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🔍 Phase 1 Structural Integrity
+        run: |
+          echo "::group::Architecture Validation"
+          # Validate standard Maven/Spring structure
+          if [ ! -d "src/main/java/com/purestack/fintech" ]; then echo "❌ Missing: Base package structure (com.purestack.fintech)"; exit 1; fi
+          if [ ! -f "pom.xml" ]; then echo "❌ Missing: pom.xml"; exit 1; fi
+          echo "✅ Project Structure is valid."
+          echo "::endgroup::"
+
+      - name: 🕵️ Phase 2 Anti-Pattern Detection
+        run: |
+          echo "::group::Code Quality Check"
+          
+          # Ban System.out.println (Use Slf4j Logger)
+          if grep -r "System.out.print" src/main/java; then 
+            echo "❌ CRITICAL: 'System.out.println' detected. Use SLF4J Logger."
+            exit 1
+          fi
+          
+          # Ban e.printStackTrace() (Bad exception handling)
+          if grep -r "printStackTrace" src/main/java; then 
+            echo "❌ CRITICAL: 'e.printStackTrace()' detected. Handle exceptions properly via Logger or ControllerAdvice."
+            exit 1
+          fi
+          
+          echo "✅ Code is clean of Dirty Logging and Bad Exception Handling."
+          echo "::endgroup::"
+
+      - name: ☕ Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: 🛡️ Phase 3 Build & Test
+        # Run tests. Failing tests will break the build here.
+        run: mvn test -B
