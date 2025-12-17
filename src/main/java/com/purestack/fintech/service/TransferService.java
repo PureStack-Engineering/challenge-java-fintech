@@ -1,26 +1,18 @@
 package com.purestack.fintech.service;
 
-import com.purestack.fintech.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 @Service
 public class TransferService {
 
-    private final AccountRepository repository;
-
-    public TransferService(AccountRepository repository) {
-        this.repository = repository;
-    }
-
-    public void transfer(Long fromId, Long toId, BigDecimal amount) {
-        // TODO: Candidate must implement ACID transaction logic here
-        // 1. Validate amount > 0
-        // 2. Fetch accounts
-        // 3. Check balance
-        // 4. Update balances
-        // 5. Save
+    public void transfer(Long sourceId, Long targetId, BigDecimal amount) {
+        // TODO: Implement ACID transfer logic
+        // 1. Fetch accounts
+        // 2. Validate balance
+        // 3. Debit source, Credit target
+        // 4. Save state
         
-        throw new UnsupportedOperationException("Not implemented yet");
+        throw new UnsupportedOperationException("Logic not implemented yet!");
     }
 }
