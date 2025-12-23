@@ -1,6 +1,6 @@
 # ACUERDO DE USO Y LICENCIA PURESTACK
 
-**© 2025 PureStack. Todos los derechos reservados.**
+**© 2025 PureStack.es. Todos los derechos reservados.**
 
 Este repositorio es público con fines de **demostración técnica y portafolio**. Aunque el código fuente es visible, **NO es Open Source** ni Libre.
 
